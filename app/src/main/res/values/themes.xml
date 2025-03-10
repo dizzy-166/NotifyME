@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+   <style name="Theme.NotifyME2" parent="Theme.NotifyME">
+       <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">@color/teal_200</item>
+       <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">@drawable/splashscreenimage</item>
+
+   </style>
 
     <style name="Theme.NotifyME" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

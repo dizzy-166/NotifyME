@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NotifyME2" parent="Theme.NotifyME">
+        <item name="android:windowSplashScreenBackground">@color/gray</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splashscreenimage</item>
+    </style>
+</resources>
