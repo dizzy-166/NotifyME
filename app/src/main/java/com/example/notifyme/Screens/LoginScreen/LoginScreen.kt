@@ -101,8 +101,3 @@ fun LoginScreen(navController: NavController) {
     }
 }
 
-@Preview
-@Composable
-fun PreviewLoginScreen() {
-    LoginScreen(navController = rememberNavController())
-}

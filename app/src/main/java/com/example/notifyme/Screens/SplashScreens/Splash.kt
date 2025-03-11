@@ -17,10 +17,10 @@ import com.example.notifyme.R
 
 @Composable
 fun SplashScreen(navController: NavController) {
-    val scale = remember { Animatable(0f) }
-    val rotation = remember { Animatable(0f) }
+    val scale = remember { Animatable(0f) } //масштаб
+    val rotation = remember { Animatable(0f) } //угол поворота
 
-    // Анимация появления + поворот
+    // Анимация появления + поворот при появлении экрана
     LaunchedEffect(key1 = true) {
         scale.animateTo(
             targetValue = 1f,
@@ -34,7 +34,7 @@ fun SplashScreen(navController: NavController) {
         )
         rotation.animateTo(
             targetValue = -15f, // Обратный наклон
-            animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+            animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing ) //эффект плавного поворота
         )
         rotation.animateTo(
             targetValue = 0f, // Возвращение в исходное положение
@@ -50,7 +50,7 @@ fun SplashScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White), //заполнение фона белым
         contentAlignment = Alignment.Center
     ) {
         Image(

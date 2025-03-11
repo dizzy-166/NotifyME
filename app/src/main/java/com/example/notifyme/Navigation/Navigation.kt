@@ -10,12 +10,11 @@ import com.example.notifyme.presentation.screens.LoginScreen
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController, startDestination = "splash") {
+    NavHost(navController, startDestination = "splash") { //NavHost отвечает за анстройкуи маршрутов
         composable("splash") { SplashScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("main") { MainScreen() }
     }
 }
-
 
 
