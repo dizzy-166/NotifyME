@@ -18,8 +18,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 
+@Preview(showBackground = true)
 @Composable
 fun LoginScreen(navController: NavController) {
     // Поля для ввода данных
