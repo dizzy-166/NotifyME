@@ -1,103 +1,83 @@
 package com.example.notifyme.presentation.screens
 
-import android.widget.Toast
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.input.ImeAction
 import androidx.navigation.NavController
+import com.example.notifyme.R
 
-@Preview(showBackground = true)
 @Composable
 fun LoginScreen(navController: NavController) {
-    // Поля для ввода данных
-    val email = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val greenColor = colorResource(id = R.color.Green_for_Splash)
 
-    // Логика авторизации
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .background(Color.White),
+        contentAlignment = Alignment.Center
     ) {
-        // Поле для ввода Email
-        TextField(
-            value = email.value,
-            onValueChange = { email.value = it },
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp)
-                .border(1.dp, Color.Gray)
-                .padding(12.dp),
-            singleLine = true,
-            label = { Text("Email") } // Подсказка для поля email
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(text = "Вход", fontSize = 24.sp, color = greenColor)
+            Spacer(modifier = Modifier.height(16.dp))
 
-        // Поле для ввода пароля
-        TextField(
-            value = password.value,
-            onValueChange = { password.value = it },
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp)
-                .border(1.dp, Color.Gray)
-                .padding(12.dp),
-            singleLine = true,
-            label = { Text("Password") } // Подсказка для поля password
-        )
+            OutlinedTextField(
+                value = username,
+                onValueChange = { username = it },
+                label = { Text("Логин") },
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+            )
 
-        // Кнопка авторизации
-        Button(
-            onClick = {
-                // Логика авторизации
-                if (email.value.isNotEmpty() && password.value.isNotEmpty()) {
-                    // Переход на главный экран
-                    navController.navigate("main") {
-                        popUpTo("login") { inclusive = true } // Убираем экран авторизации
-                    }
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Пароль") },
+                singleLine = true,
+                visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = { navController.navigate("main") },
+                    colors = ButtonDefaults.buttonColors(containerColor = greenColor)
+                ) {
+                    Text(text = "Войти", color = Color.White)
                 }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-        ) {
-            Text(text = "Log in")
-        }
-
-        // Кнопка "Создать аккаунт"
-        Button(
-            onClick = {
-                // Логика для перехода на экран регистрации
-                navController.navigate("register") // Экран регистрации
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 12.dp)
-        ) {
-            Text(text = "Create Account")
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "У вас нет аккаунта?",
+                    fontSize = 14.sp,
+                    color = greenColor,
+                    modifier = Modifier.clickable { navController.navigate("register") } // Переход на экран регистрации
+                )
+            }
         }
     }
 }
-
